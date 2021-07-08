@@ -1,6 +1,4 @@
 
-let playerMove = "ROck";
-
 function computerMove() {
 
     let moveSet = ["Rock", "Paper", "Scissors"];
@@ -45,7 +43,7 @@ function game() {
             console.log("You lose!");
         }
 
-        if(playerScore === 5 || computerScore ===5) {
+        if(playerScore === 5 || computerScore === 5) {
             isDone = true;
         }
     }
