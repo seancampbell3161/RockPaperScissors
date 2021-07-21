@@ -10,6 +10,10 @@ const rock = document.querySelector('#rock');
 const paper = document.querySelector('#paper');
 const scissors = document.querySelector('#scissors');
 const result = document.querySelector('#result');
+const playerScoreHolder = document.querySelector('#playerScore');
+const computerScoreHolder = document.querySelector('#computerScore');
+const pScore = 0;
+const cScore = 0;
 
 rock.addEventListener('click', () => {
     let playerSelection = "rock";
@@ -31,24 +35,29 @@ scissors.addEventListener('click', () => {
 
 function checkWhoWon(playerSelection, computerSelection) {
     if(playerSelection == computerSelection) {
-        result.textContent = "The game is a tie.";
+        printWhoWon("tie");
     } else if(playerSelection === "rock" && computerSelection === "scissors") {
-        //playerScore++;
+        pScore++;
+        printWhoWon("player");      
+    } else if(playerSelection === "rock" && computerSelection === "paper") {       
+        printWhoWon("computer");
+    } else if(playerSelection === "scissors" && computerSelection === "paper") {    
+        printWhoWon("player");
+    } else if(playerSelection === "scissors" && computerSelection === "rock") {   
+        printWhoWon("computer");
+    } else if(playerSelection === "paper" && computerSelection === "rock") {    
+        printWhoWon("player");
+    } else {    
+        printWhoWon("computer");
+    }
+}
+
+function printWhoWon(playerWon) {
+    if(playerWon === "player") {
         result.textContent = "You win!";
-    } else if(playerSelection === "rock" && computerSelection === "paper") {
-        //computerScore++;
-        result.textContent = "You lose!";
-    } else if(playerSelection === "scissors" && computerSelection === "paper") {
-        //playerScore++;
-        result.textContent = "You win!";
-    } else if(playerSelection === "scissors" && computerSelection === "rock") {
-        //computerScore++;
-        result.textContent = "You lose!";
-    } else if(playerSelection === "paper" && computerSelection === "rock") {
-        //playerScore++;
-        result.textContent = "You win!";
+    } else if (playerWon === "tie") {
+        result.textContent = "The game is a tie.";
     } else {
-        //computerScore++;
         result.textContent = "You lose!";
     }
 }
