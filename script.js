@@ -1,58 +1,54 @@
 
 function computerMove() {
 
-    let moveSet = ["Rock", "Paper", "Scissors"];
+    let moveSet = ["rock", "paper", "scissors"];
     let randomNum = Math.floor(Math.random() * moveSet.length);
-    return moveSet[randomNum].toLowerCase();
+    return moveSet[randomNum];
 }
 
-function game() {
+const rock = document.querySelector('#rock');
+const paper = document.querySelector('#paper');
+const scissors = document.querySelector('#scissors');
+const result = document.querySelector('#result');
 
-    playerScore = 0;
-    computerScore = 0;
-    let isDone = false;
+rock.addEventListener('click', () => {
+    let playerSelection = "rock";
+    let computerSelection = computerMove();
+    checkWhoWon(playerSelection, computerSelection);
+});
 
-    while(!isDone) {
+paper.addEventListener('click', () => {
+    let playerSelection = "paper";
+    let computerSelection = computerMove();
+    checkWhoWon(playerSelection, computerSelection);
+});
 
-        let computerSelection = computerMove().toLowerCase();
-        playerSelection = window.prompt("Choose a move");
-        playerSelection = playerSelection.toLowerCase();
-        
-        console.log(playerSelection);
-        console.log(computerSelection);
+scissors.addEventListener('click', () => {
+    let playerSelection = "scissors";
+    let computerSelection = computerMove();
+    checkWhoWon(playerSelection, computerSelection);
+});
 
-        if(playerSelection == computerSelection) {
-            console.log("The game is a tie.");
-        } else if(playerSelection === "rock" && computerSelection === "scissors") {
-            playerScore++;
-            console.log("You win!");
-        } else if(playerSelection === "rock" && computerSelection === "paper") {
-            computerScore++;
-            console.log("You lose!");
-        } else if(playerSelection === "scissors" && computerSelection === "paper") {
-            playerScore++;
-            console.log("You win!");
-        } else if(playerSelection === "scissors" && computerSelection === "rock") {
-            computerScore++;
-            console.log("You lose!");
-        } else if(playerSelection === "paper" && computerSelection === "rock") {
-            playerScore++;
-            console.log("You win!");
-        } else {
-            computerScore++;
-            console.log("You lose!");
-        }
-
-        if(playerScore === 5 || computerScore === 5) {
-            isDone = true;
-        }
+function checkWhoWon(playerSelection, computerSelection) {
+    if(playerSelection == computerSelection) {
+        result.textContent = "The game is a tie.";
+    } else if(playerSelection === "rock" && computerSelection === "scissors") {
+        //playerScore++;
+        result.textContent = "You win!";
+    } else if(playerSelection === "rock" && computerSelection === "paper") {
+        //computerScore++;
+        result.textContent = "You lose!";
+    } else if(playerSelection === "scissors" && computerSelection === "paper") {
+        //playerScore++;
+        result.textContent = "You win!";
+    } else if(playerSelection === "scissors" && computerSelection === "rock") {
+        //computerScore++;
+        result.textContent = "You lose!";
+    } else if(playerSelection === "paper" && computerSelection === "rock") {
+        //playerScore++;
+        result.textContent = "You win!";
+    } else {
+        //computerScore++;
+        result.textContent = "You lose!";
     }
-
-    playerScore === 5 ? winner = "The player" : winner = "The computer";
-
-    console.log("The game is over. " + winner + " has won!");
 }
-
-let result = game();
-
-console.log(result);
